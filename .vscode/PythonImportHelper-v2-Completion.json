@@ -1,0 +1,651 @@
+[
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "SignInPayload",
+        "importPath": "schemas.auth.auth",
+        "description": "schemas.auth.auth",
+        "isExtraImport": true,
+        "detail": "schemas.auth.auth",
+        "documentation": {}
+    },
+    {
+        "label": "SignUpPayload",
+        "importPath": "schemas.auth.auth",
+        "description": "schemas.auth.auth",
+        "isExtraImport": true,
+        "detail": "schemas.auth.auth",
+        "documentation": {}
+    },
+    {
+        "label": "UserRepository",
+        "importPath": "repositories.user_repository.user_repository",
+        "description": "repositories.user_repository.user_repository",
+        "isExtraImport": true,
+        "detail": "repositories.user_repository.user_repository",
+        "documentation": {}
+    },
+    {
+        "label": "UserRepository",
+        "importPath": "repositories.user_repository.user_repository",
+        "description": "repositories.user_repository.user_repository",
+        "isExtraImport": true,
+        "detail": "repositories.user_repository.user_repository",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "importPath": "utils.auth",
+        "description": "utils.auth",
+        "isExtraImport": true,
+        "detail": "utils.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "importPath": "database",
+        "description": "database",
+        "isExtraImport": true,
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "main",
+        "description": "main",
+        "isExtraImport": true,
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "bcrypt",
+        "description": "bcrypt",
+        "detail": "bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "models.user",
+        "description": "models.user",
+        "isExtraImport": true,
+        "detail": "models.user",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "EmailStr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "importPath": "utils.auth.token",
+        "description": "utils.auth.token",
+        "isExtraImport": true,
+        "detail": "utils.auth.token",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "OperationalError",
+        "importPath": "sqlalchemy.exc",
+        "description": "sqlalchemy.exc",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.exc",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "user",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "auth_controller",
+        "importPath": "controllers.auth_controller",
+        "description": "controllers.auth_controller",
+        "isExtraImport": true,
+        "detail": "controllers.auth_controller",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "controllers.auth_controller.auth_controller",
+        "description": "controllers.auth_controller.auth_controller",
+        "peekOfCode": "router = APIRouter()\n@router.post(\"/sign_in\")\nasync def sign_in(data: SignInPayload, db: Session = Depends(get_db)):\n    user = UserRepository.get_by_email(db, data.email)\n    if user and user.check_password(data.password):\n        token = Token.generate_and_sign(user.id)\n        return {\"message\": \"Login successful\", \"token\": token}\n    else:\n        raise HTTPException(status_code=400, detail=\"Oops...wrong password or email\")\n@router.post(\"/sign_up\")",
+        "detail": "controllers.auth_controller.auth_controller",
+        "documentation": {}
+    },
+    {
+        "label": "test_sign_up_success",
+        "kind": 2,
+        "importPath": "controllers.auth_controller.test_auth_controller",
+        "description": "controllers.auth_controller.test_auth_controller",
+        "peekOfCode": "def test_sign_up_success():\n    response = client.post(\"/auth/sign_up\", json={\n        \"email\": \"newuser@example.com\",\n        \"password\": \"Password123!\",\n        \"password_confirm\": \"Password123!\"\n    })\n    assert response.status_code == 200\n    assert \"token\" in response.json()\ndef test_sign_in_success():\n    client.post(\"/auth/sign_up\", json={",
+        "detail": "controllers.auth_controller.test_auth_controller",
+        "documentation": {}
+    },
+    {
+        "label": "test_sign_in_success",
+        "kind": 2,
+        "importPath": "controllers.auth_controller.test_auth_controller",
+        "description": "controllers.auth_controller.test_auth_controller",
+        "peekOfCode": "def test_sign_in_success():\n    client.post(\"/auth/sign_up\", json={\n        \"email\": \"existinguser@example.com\",\n        \"password\": \"Password123!\",\n        \"password_confirm\": \"Password123!\"\n    })\n    response = client.post(\"/auth/sign_in\", json={\n        \"email\": \"existinguser@example.com\",\n        \"password\": \"Password123!\"\n    })",
+        "detail": "controllers.auth_controller.test_auth_controller",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "controllers.auth_controller.test_auth_controller",
+        "description": "controllers.auth_controller.test_auth_controller",
+        "peekOfCode": "client = TestClient(app)\ndef test_sign_up_success():\n    response = client.post(\"/auth/sign_up\", json={\n        \"email\": \"newuser@example.com\",\n        \"password\": \"Password123!\",\n        \"password_confirm\": \"Password123!\"\n    })\n    assert response.status_code == 200\n    assert \"token\" in response.json()\ndef test_sign_in_success():",
+        "detail": "controllers.auth_controller.test_auth_controller",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "models.user",
+        "description": "models.user",
+        "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))\n    email = Column(String, unique=True, nullable=False)\n    email_verified = Column(Boolean, default=False)\n    hashed_password = Column(String, nullable=False)\n    def check_password(self, password: str) -> bool:\n        return bcrypt.checkpw(password.encode(), self.hashed_password.encode())",
+        "detail": "models.user",
+        "documentation": {}
+    },
+    {
+        "label": "test_save_user",
+        "kind": 2,
+        "importPath": "repositories.user_repository.test_user_repository",
+        "description": "repositories.user_repository.test_user_repository",
+        "peekOfCode": "def test_save_user():\n    db: Session = next(get_db())\n    user = UserRepository.save(db, email=\"testuser@example.com\", password=\"Password123!\")\n    assert user.email == \"testuser@example.com\"\n    assert user.check_password(\"Password123!\")\ndef test_get_user_by_email():\n    db: Session = next(get_db())\n    user = UserRepository.get_by_email(db, \"testuser@example.com\")\n    assert user is not None\n    assert user.email == \"testuser@example.com\"",
+        "detail": "repositories.user_repository.test_user_repository",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_user_by_email",
+        "kind": 2,
+        "importPath": "repositories.user_repository.test_user_repository",
+        "description": "repositories.user_repository.test_user_repository",
+        "peekOfCode": "def test_get_user_by_email():\n    db: Session = next(get_db())\n    user = UserRepository.get_by_email(db, \"testuser@example.com\")\n    assert user is not None\n    assert user.email == \"testuser@example.com\"",
+        "detail": "repositories.user_repository.test_user_repository",
+        "documentation": {}
+    },
+    {
+        "label": "UserRepository",
+        "kind": 6,
+        "importPath": "repositories.user_repository.user_repository",
+        "description": "repositories.user_repository.user_repository",
+        "peekOfCode": "class UserRepository:\n    @staticmethod\n    def save(session: Session, email: str, password: str):\n        if not re.match(r\".+@.+\\..+\", email):\n            raise ValueError(\"Email is invalid\")\n        if len(password) < 8 or not any(char.isdigit() for char in password) \\\n                or not any(char.isupper() for char in password) or not any(char.islower() for char in password) \\\n                or not re.search(r\"[#?!@$%^&*()]\", password):\n            raise ValueError(\"Password does not meet requirements\")\n        hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()",
+        "detail": "repositories.user_repository.user_repository",
+        "documentation": {}
+    },
+    {
+        "label": "SignUpPayload",
+        "kind": 6,
+        "importPath": "schemas.auth.auth",
+        "description": "schemas.auth.auth",
+        "peekOfCode": "class SignUpPayload(BaseModel):\n    class Payload(BaseModel):\n        class Data(BaseModel):\n            hashed_password: str\n            password: str\n            email: EmailStr\n        data: Data\n    payload: Payload\n    user_id: str\n    screen_id: str",
+        "detail": "schemas.auth.auth",
+        "documentation": {}
+    },
+    {
+        "label": "SignInPayload",
+        "kind": 6,
+        "importPath": "schemas.auth.auth",
+        "description": "schemas.auth.auth",
+        "peekOfCode": "class SignInPayload(BaseModel):\n    class Payload(BaseModel):\n        class Data(BaseModel):\n            password: str\n            email: EmailStr\n        data: Data\n    payload: Payload\n    user_id: str\n    screen_id: str\n    project_id: str",
+        "detail": "schemas.auth.auth",
+        "documentation": {}
+    },
+    {
+        "label": "test_generate_and_verify_token",
+        "kind": 2,
+        "importPath": "schemas.auth.test_token",
+        "description": "schemas.auth.test_token",
+        "peekOfCode": "def test_generate_and_verify_token():\n    user_id = \"user123\"\n    token = Token.generate_and_sign(user_id)\n    payload = Token.verify_token(token)\n    assert payload is not None\n    assert payload[\"user_id\"] == user_id\ndef test_verify_expired_token():\n    user_id = \"user123\"\n    token = Token.generate_and_sign(user_id)\n    # Simulate expired token by altering the expiration date in payload",
+        "detail": "schemas.auth.test_token",
+        "documentation": {}
+    },
+    {
+        "label": "test_verify_expired_token",
+        "kind": 2,
+        "importPath": "schemas.auth.test_token",
+        "description": "schemas.auth.test_token",
+        "peekOfCode": "def test_verify_expired_token():\n    user_id = \"user123\"\n    token = Token.generate_and_sign(user_id)\n    # Simulate expired token by altering the expiration date in payload\n    expired_token = token[:-1] + \"a\"\n    assert Token.verify_token(expired_token) is None",
+        "detail": "schemas.auth.test_token",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 6,
+        "importPath": "schemas.auth.token",
+        "description": "schemas.auth.token",
+        "peekOfCode": "class Token:\n    @staticmethod\n    def generate_and_sign(user_id: str) -> str:\n        expire = datetime.utcnow() + timedelta(days=1)\n        payload = {\"user_id\": user_id, \"exp\": expire}\n        return jwt.encode(payload, settings.SECRET_KEY, algorithm=\"HS256\")\n    @staticmethod\n    def verify_token(token: str):\n        try:\n            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[\"HS256\"])",
+        "detail": "schemas.auth.token",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 6,
+        "importPath": "utils.auth",
+        "description": "utils.auth",
+        "peekOfCode": "class Token:\n    @staticmethod\n    def generate_and_sign(user_id: str) -> str:\n        expire = datetime.utcnow() + timedelta(days=1)\n        payload = {\"user_id\": user_id, \"exp\": expire}\n        return jwt.encode(payload, settings.SECRET_KEY, algorithm=\"HS256\")\n    @staticmethod\n    def verify_token(token: str):\n        try:\n            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[\"HS256\"])",
+        "detail": "utils.auth",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "class Settings:\n    DATABASE_URL = os.getenv(\"DATABASE_URL\", \"postgresql://postgres:postgres@db/travel_buddy_db\")\n    SECRET_KEY = os.getenv(\"SECRET_KEY\", \"your_secret_key\")\nsettings = Settings()",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "settings = Settings()",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "create_database",
+        "kind": 2,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "def create_database():\n    try:\n        # Connect to PostgreSQL server and create the database\n        with engine.connect() as connection:\n            connection.execute(f\"CREATE DATABASE {DATABASE_NAME}\")\n            print(f\"Database '{DATABASE_NAME}' created successfully.\")\n    except OperationalError as e:\n        print(f\"Error: {e}\")\n        # If the database already exists, this exception will be triggered.\n# Function to create the tables in the newly created database",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "create_tables",
+        "kind": 2,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "def create_tables():\n    # Update the database URL to include the database name\n    db_url_with_db = f\"{DATABASE_URL}\"\n    engine_with_db = create_engine(db_url_with_db)\n    # Create tables based on the models defined\n    try:\n        Base.metadata.create_all(bind=engine_with_db)  # This will create all the tables in the database\n        print(f\"Tables created successfully in the database '{DATABASE_NAME}'.\")\n    except Exception as e:\n        print(f\"Error while creating tables: {e}\")",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_URL",
+        "kind": 5,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "DATABASE_URL = settings.DATABASE_URL  # Base URL for the PostgreSQL connection\nDATABASE_NAME = \"travel_buddy_db\"  # Database name to be created\n# Create the engine to connect to PostgreSQL (without specifying the database)\nengine = create_engine(DATABASE_URL, isolation_level=\"AUTOCOMMIT\", pool_pre_ping=True)\n# Create a session maker for database interaction\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Function to create the database if it does not exist\ndef create_database():\n    try:\n        # Connect to PostgreSQL server and create the database",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_NAME",
+        "kind": 5,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "DATABASE_NAME = \"travel_buddy_db\"  # Database name to be created\n# Create the engine to connect to PostgreSQL (without specifying the database)\nengine = create_engine(DATABASE_URL, isolation_level=\"AUTOCOMMIT\", pool_pre_ping=True)\n# Create a session maker for database interaction\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Function to create the database if it does not exist\ndef create_database():\n    try:\n        # Connect to PostgreSQL server and create the database\n        with engine.connect() as connection:",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "engine = create_engine(DATABASE_URL, isolation_level=\"AUTOCOMMIT\", pool_pre_ping=True)\n# Create a session maker for database interaction\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Function to create the database if it does not exist\ndef create_database():\n    try:\n        # Connect to PostgreSQL server and create the database\n        with engine.connect() as connection:\n            connection.execute(f\"CREATE DATABASE {DATABASE_NAME}\")\n            print(f\"Database '{DATABASE_NAME}' created successfully.\")",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "create_db",
+        "description": "create_db",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Function to create the database if it does not exist\ndef create_database():\n    try:\n        # Connect to PostgreSQL server and create the database\n        with engine.connect() as connection:\n            connection.execute(f\"CREATE DATABASE {DATABASE_NAME}\")\n            print(f\"Database '{DATABASE_NAME}' created successfully.\")\n    except OperationalError as e:\n        print(f\"Error: {e}\")",
+        "detail": "create_db",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "def get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "engine = create_engine(settings.DATABASE_URL)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "Base = declarative_base()\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\n# Initialize the database\nBase.metadata.create_all(bind=engine)\n# Include routers\napp.include_router(auth_controller.router, prefix=\"/auth\", tags=[\"auth\"])",
+        "detail": "main",
+        "documentation": {}
+    }
+]
