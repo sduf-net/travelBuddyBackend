@@ -17,7 +17,9 @@ async def sign_in(data: SignInPayload, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Oops...wrong password or email")
 
 @router.post("/sign_up")
-async def sign_up(data: SignUpPayload, db: Session = Depends(get_db)):
+async def sign_up(params: SignUpPayload, db: Session = Depends(get_db)):
+    data = params.payload.data
+
     if data.password != data.password_confirm:
         raise HTTPException(status_code=400, detail="Passwords do not match")
 
