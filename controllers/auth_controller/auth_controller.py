@@ -8,7 +8,9 @@ from database import get_db
 router = APIRouter()
 
 @router.post("/sign_in")
-async def sign_in(data: SignInPayload, db: Session = Depends(get_db)):
+async def sign_in(params: SignInPayload, db: Session = Depends(get_db)):
+    data = params.payload.data
+
     user = UserRepository.get_by_email(db, data.email)
     if user and user.check_password(data.password):
         token = Token.generate_and_sign(user.id)
