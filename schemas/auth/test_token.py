@@ -1,4 +1,4 @@
-from utils.auth.token import Token
+from schemas.auth.token import Token
 
 def test_generate_and_verify_token():
     user_id = "user123"
