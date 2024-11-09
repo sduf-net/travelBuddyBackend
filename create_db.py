@@ -8,8 +8,9 @@ from database import Base
 from models import user
 
 # Define the database URL for PostgreSQL (without the database name, just the connection)
-DATABASE_URL = settings.DATABASE_URL  # Base URL for the PostgreSQL connection
+DATABASE_URL = "postgresql://postgres:postgres@db/"  # Base URL for the PostgreSQL connection
 DATABASE_NAME = "travel_buddy_db"  # Database name to be created
+TEST_DATABASE_NAME = "test_travel_buddy_db"  # Database name to be created
 
 # Create the engine to connect to PostgreSQL (without specifying the database)
 engine = create_engine(DATABASE_URL, isolation_level="AUTOCOMMIT", pool_pre_ping=True)
@@ -23,7 +24,9 @@ def create_database():
         # Connect to PostgreSQL server and create the database
         with engine.connect() as connection:
             connection.execute(f"CREATE DATABASE {DATABASE_NAME}")
+            connection.execute(f"CREATE DATABASE {TEST_DATABASE_NAME}")
             print(f"Database '{DATABASE_NAME}' created successfully.")
+            print(f"Database '{TEST_DATABASE_NAME}' created successfully.")
     except OperationalError as e:
         print(f"Error: {e}")
         # If the database already exists, this exception will be triggered.
