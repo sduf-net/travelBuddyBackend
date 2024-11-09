@@ -1,10 +1,4 @@
-import pytest
-from fastapi.testclient import TestClient
-from main import app
-
-client = TestClient(app)
-
-def test_sign_up_success():
+def test_sign_up_success(client):
     response = client.post("/auth/sign_up", json={
         "payload": {
             "data": {
@@ -20,7 +14,7 @@ def test_sign_up_success():
     assert response.status_code == 200
     assert "token" in response.json()
 
-def test_sign_in_success():
+def test_sign_in_success(client):
     client.post("/auth/sign_up", json={
         "payload": {
             "data": {
