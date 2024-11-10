@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from schemas.auth.auth import SignInPayload, SignUpPayload
 from repositories.user_repository.user_repository import UserRepository
-from utils.auth import Token
+from utils.token import Token
 from database import get_db
 
 router = APIRouter()

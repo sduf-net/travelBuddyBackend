@@ -6,10 +6,10 @@ from database import get_db
 
 router = APIRouter()
 
-@router.post("/")
+@router.post("")
 async def profile(params: SdufRequest, db: Session = Depends(get_db)):
-    return {"message": "Profile preview screen"}
+    return {"message": "Implement me"}
 
 @router.post("/edit")
 async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Profile edit screen"}
+     return {"message": "Implement me"}

@@ -8,8 +8,8 @@ router = APIRouter()
 
 @router.post("/list")
 async def profile(params: SdufRequest, db: Session = Depends(get_db)):
-    return {"message": "Chat list screen"}
+    return {"message": "Implement me"}
 
 @router.post("/{chat_id}}")
 async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Chat screen"}
+     return {"message": "Implement me"}

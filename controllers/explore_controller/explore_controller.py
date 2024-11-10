@@ -8,8 +8,8 @@ router = APIRouter()
 
 @router.post("/")
 async def profile(params: SdufRequest, db: Session = Depends(get_db)):
-    return {"message": "Explore preview screen"}
+    return {"message": "Implement me"}
 
 @router.post("/load-more")
 async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Load more api"}
+     return {"message": "Implement me"}
