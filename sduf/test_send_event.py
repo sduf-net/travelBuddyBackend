@@ -18,7 +18,7 @@ def test_send_event_success():
     )
 
     # Call the function and check the result
-    result = send_event()
+    result = send_event({})
     assert result == {"status": "event received"}
     assert len(responses.calls) == 1  # Ensure only one call was made
     assert responses.calls[0].request.url == f"{BASE_URL}/push/event"
@@ -35,7 +35,7 @@ def test_send_event_internal_server_error():
 
     # Check that the function raises an HTTPError
     with pytest.raises(HTTPError):
-        send_event()
+        send_event({})
     assert len(responses.calls) == 1
     assert responses.calls[0].response.status_code == 500
 
@@ -51,6 +51,6 @@ def test_send_event_not_found():
 
     # Check that the function raises an HTTPError
     with pytest.raises(HTTPError):
-        send_event()
+        send_event({})
     assert len(responses.calls) == 1
     assert responses.calls[0].response.status_code == 404
