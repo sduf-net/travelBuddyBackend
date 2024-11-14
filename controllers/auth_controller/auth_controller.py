@@ -77,4 +77,15 @@ async def sign_up(params: SignUpPayload, db: Session = Depends(get_db)):
         payload={"id": user.id, "token": token}
     )
     send_event(event.model_dump())
+
+    event = SdufEvent(
+        event_id=str(uuid.uuid4()),
+        user_id=params.user_id,
+        project_id=params.project_id,
+        screen_id=params.screen_id,
+        action="close_popup",
+        payload={}
+    )
+    send_event(event.model_dump())
+
     return Response(status_code=204)
