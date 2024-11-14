@@ -8,3 +8,11 @@ class SdufRequest(BaseModel):
     user_token: Optional[str] = None
     screen_id: int
     project_id: str
+
+class SdufEvent(BaseModel):
+    payload: Any
+    event_id: str
+    user_id: str
+    project_id: str
+    screen_id: str
+    action: str
