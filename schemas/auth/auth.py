@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, field_validator
+from typing import Union
 import re
 
 class SignUpPayload(BaseModel):
@@ -35,7 +36,7 @@ class SignUpPayload(BaseModel):
 
     payload: Payload
     user_id: str
-    screen_id: str
+    screen_id: Union[str, int]
     project_id: str
 
 class SignInPayload(BaseModel):
@@ -47,5 +48,5 @@ class SignInPayload(BaseModel):
 
     payload: Payload
     user_id: str
-    screen_id: str
+    screen_id: Union[str, int]
     project_id: str
