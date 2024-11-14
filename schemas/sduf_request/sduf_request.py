@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 class SdufRequest(BaseModel):
     payload: Any
@@ -14,5 +14,5 @@ class SdufEvent(BaseModel):
     event_id: str
     user_id: str
     project_id: str
-    screen_id: str
+    screen_id: Union[str, int]
     action: str
