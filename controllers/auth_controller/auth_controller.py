@@ -1,23 +1,91 @@
-from fastapi import APIRouter, HTTPException, Depends, Response
+from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
-from schemas.auth.auth import SignInPayload, SignUpPayload
 from repositories.user_repository.user_repository import UserRepository
 from utils.token import Token
 from database import get_db
-from schemas.sduf_request.sduf_request import SdufEvent
+from schemas.sduf_request.sduf_request import SdufRequest, SdufEvent
 import uuid
+from pydantic import EmailStr
 from sduf.api_client import send_event
 
 router = APIRouter()
 
 @router.post("/sign_in")
-async def sign_in(params: SignInPayload, db: Session = Depends(get_db)):
-    data = params.payload.data
+async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
+    try:
+        if 'data' not in params.payload:
+            raise ValueError("Missing required fields (email, password)")
 
-    user = UserRepository.get_by_email(db, data.email)
-    if user and user.check_password(data.password):
+        data = params.payload['data']
+        # Validate that email and password are present
+        if not data or 'email' not in data or 'password' not in data:
+            raise ValueError("Missing required fields (email, password)")
+
+        # Validate email format using Pydantic EmailStr
+        if '@' not in data['email'] and '.' not in data['email']:
+            raise ValueError("Invalid email format")
+
+        # Authenticate user
+        user = UserRepository.get_by_email(db, data['email'])
+        if user and user.check_password(data['password']):
+            # Generate a token for the user if authentication is successful
+            token = Token.generate_and_sign(user.id)
+
+            event = SdufEvent(
+                event_id=str(uuid.uuid4()),
+                user_id=params.user_id,
+                project_id=params.project_id,
+                screen_id=params.screen_id,
+                action="login",
+                payload={"id": user.id, "token": token}
+            )
+            send_event(event.model_dump())
+            return Response(status_code=204)
+        else: 
+            raise ValueError("Incorrect email or password")
+    except ValueError as e:
+        error_message = str(e)
+        # If authentication fails, send an error message
+        event = SdufEvent(
+            event_id=str(uuid.uuid4()),
+            user_id=params.user_id,
+            project_id=params.project_id,
+            screen_id=params.screen_id,
+            action="show_error_message",
+            payload={"error_message": error_message}
+        )
+        send_event(event.model_dump())
+        return {"error_message": error_message}
+
+
+@router.post("/sign_up")
+async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
+    try:
+        if 'data' not in params.payload:
+            raise ValueError("Missing required fields (email, password)")
+
+        data = params.payload['data']
+        # Validate that email and password are present
+        if not data or 'email' not in data or 'password' not in data:
+            raise ValueError("Missing required fields (email, password)")
+
+        # Validate email format using Pydantic EmailStr
+        if '@' not in data['email'] and '.' not in data['email']:
+            raise ValueError("Invalid email format")
+
+        # Check if passwords match
+        if data['password'] != data['password_confirm']:
+            raise ValueError("Passwords do not match")
+
+        # Check if the user already exists
+        if UserRepository.get_by_email(db, data['email']):
+            raise ValueError("User already registered")
+
+        # Create the new user
+        user = UserRepository.save(db, email=data['email'], password=data['password'])
         token = Token.generate_and_sign(user.id)
 
+        # Send login success event
         event = SdufEvent(
             event_id=str(uuid.uuid4()),
             user_id=params.user_id,
@@ -27,65 +95,29 @@ async def sign_in(params: SignInPayload, db: Session = Depends(get_db)):
             payload={"id": user.id, "token": token}
         )
         send_event(event.model_dump())
+
+        # Send close popup event
+        event = SdufEvent(
+            event_id=str(uuid.uuid4()),
+            user_id=params.user_id,
+            project_id=params.project_id,
+            screen_id=params.screen_id,
+            action="close_popup",
+            payload={}
+        )
+        send_event(event.model_dump())
+
         return Response(status_code=204)
-    else:
+    except ValueError as e:
+        error_message = str(e)
+        # If authentication fails, send an error message
         event = SdufEvent(
             event_id=str(uuid.uuid4()),
             user_id=params.user_id,
             project_id=params.project_id,
             screen_id=params.screen_id,
             action="show_error_message",
-            payload={"error_message": "Oops...wrong password or email"}
+            payload={"error_message": error_message}
         )
         send_event(event.model_dump())
-        return Response(status_code=204)
-
-@router.post("/sign_up")
-async def sign_up(params: SignUpPayload, db: Session = Depends(get_db)):
-    data = params.payload.data
-    action = None
-
-    if data.password != data.password_confirm:
-        action="show_error_message"
-        payload={"error_message": "Passwords do not match"}
-
-    if UserRepository.get_by_email(db, data.email):
-        action="show_error_message"
-        payload={"error_message": "User already registered"}
-
-    if action == "show_error_message":
-        event = SdufEvent(
-            event_id=str(uuid.uuid4()),
-            user_id=params.user_id,
-            project_id=params.project_id,
-            screen_id=params.screen_id,
-            action=action,
-            payload=payload
-        )
-        send_event(event.model_dump())
-        return Response(status_code=204)
-
-    user = UserRepository.save(db, email=data.email, password=data.password)
-    token = Token.generate_and_sign(user.id)
-
-    event = SdufEvent(
-        event_id=str(uuid.uuid4()),
-        user_id=params.user_id,
-        project_id=params.project_id,
-        screen_id=params.screen_id,
-        action="login",
-        payload={"id": user.id, "token": token}
-    )
-    send_event(event.model_dump())
-
-    event = SdufEvent(
-        event_id=str(uuid.uuid4()),
-        user_id=params.user_id,
-        project_id=params.project_id,
-        screen_id=params.screen_id,
-        action="close_popup",
-        payload={}
-    )
-    send_event(event.model_dump())
-
-    return Response(status_code=204)
+        return {"error_message": error_message}
