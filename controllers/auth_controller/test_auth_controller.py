@@ -1,165 +1,136 @@
-def test_sign_in_success(client):
-    response = client.post("/auth/sign_up", json={
+from sqlalchemy.orm import Session
+from repositories.user_repository.user_repository import UserRepository
+
+def test_sign_in_success(client, db_session: Session, mock_requests_post):
+    UserRepository.save(db_session, email="testuser1@example.com", password="Password123!")
+    valid_sign_in_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
             "data": {
-                "email": "existinguser@example.com",
-                "password": "Password123!",
-                "password_confirm": "Password123!"
-            }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    
-    response = client.post("/auth/sign_in", json={
-        "payload": {
-            "data": {
-                "email": "existinguser@example.com",
+                "email": "testuser1@example.com",
                 "password": "Password123!"
             }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
+        }
+    }
+    response = client.post("/auth/sign_in", json=valid_sign_in_payload)
+    mock_requests_post.assert_called_once()
     assert response.status_code == 204
 
-
-def test_sign_in_missing_email(client):
-    response = client.post("/auth/sign_in", json={
+def test_sign_in_missing_fields(client):
+    invalid_sign_in_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
-            "data": {
-                "password": "Password123!"
-            }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    print(response)
+            "data": {}
+        }
+    }
+    response = client.post("auth/sign_in", json=invalid_sign_in_payload)
     assert response.status_code == 200
-    response_json = response.json()
-    assert "error_message" in response_json
-    assert response_json["error_message"] == "Missing required fields (email, password)"
+    assert response.json() == {'error_message': 'Missing required fields (email, password)'}
 
-
-def test_sign_in_invalid_email_format(client):
-    response = client.post("/auth/sign_in", json={
+def test_sign_in_invalid_email(client):
+    invalid_sign_in_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
             "data": {
-                "email": "invalid-email-format",
+                "email": "invalidemail",
                 "password": "Password123!"
             }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    assert response.status_code == 204
-    response_json = response.json()
-    assert "error_message" in response_json
-    assert response_json["error_message"] == "Invalid email format"
+        }
+    }
+    response = client.post("/auth/sign_in", json=invalid_sign_in_payload)
+    assert response.status_code == 200
+    assert response.json() == {'error_message': 'Invalid email format'}
 
+def test_sign_in_incorrect_password(client):
+    invalid_sign_in_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
+        "payload": {
+            "data": {
+                "email": "testuser1@example.com",
+                "password": "IncorrectPassword"
+            }
+        }
+    }
+    response = client.post("/auth/sign_in", json=invalid_sign_in_payload)
+    assert response.status_code == 200
+    assert response.json() == {'error_message': 'Incorrect email or password'}
 
-def test_sign_in_incorrect_credentials(client):
-    # Sign up a user first
-    response = client.post("/auth/sign_up", json={
+def test_sign_up_success(client, mock_requests_post):
+    valid_sign_up_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
             "data": {
                 "email": "newuser@example.com",
                 "password": "Password123!",
                 "password_confirm": "Password123!"
             }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    
-    # Test sign-in with incorrect password
-    response = client.post("/auth/sign_in", json={
-        "payload": {
-            "data": {
-                "email": "newuser@example.com",
-                "password": "WrongPassword!"
-            }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
+        }
+    }
+    response = client.post("/auth/sign_up", json=valid_sign_up_payload)
     assert response.status_code == 204
-    response_json = response.json()
-    assert "error_message" in response_json
-    assert response_json["error_message"] == "Incorrect email or password"
+    mock_requests_post.assert_called()
 
-
-# Test cases for sign_up route
-def test_sign_up_success(client):
-    response = client.post("/auth/sign_up", json={
+def test_sign_up_mismatched_passwords(client):
+    invalid_sign_up_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
             "data": {
                 "email": "newuser@example.com",
                 "password": "Password123!",
-                "password_confirm": "Password123!"
+                "password_confirm": "DifferentPassword"
             }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    assert response.status_code == 204
+        }
+    }
+    response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
+    assert response.status_code == 200
+    assert response.json() == {'error_message': 'Passwords do not match'}
 
+def test_sign_up_missing_fields(client):
+    invalid_sign_up_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
+        "payload": {
+            "data": {}
+        }
+    }
+    response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
+    assert response.status_code == 200
+    assert response.json() == {'error_message': 'Missing required fields (email, password)'}
 
-def test_sign_up_passwords_do_not_match(client):
-    response = client.post("/auth/sign_up", json={
+def test_sign_up_user_exists(client):
+    invalid_sign_up_payload = {
+        "user_id": "user-uuid",
+        "action": "user-uuid",
+        "project_id": "project-uuid",
+        "screen_id": "screen-uuid",
         "payload": {
             "data": {
-                "email": "newuser@example.com",
-                "password": "Password123!",
-                "password_confirm": "DifferentPassword123!"
-            }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    assert response.status_code == 204
-    response_json = response.json()
-    assert "error_message" in response_json
-    assert response_json["error_message"] == "Passwords do not match"
-
-
-def test_sign_up_user_already_registered(client):
-    # Sign up a user first
-    response = client.post("/auth/sign_up", json={
-        "payload": {
-            "data": {
-                "email": "existinguser@example.com",
+                "email": "testuser1@example.com",
                 "password": "Password123!",
                 "password_confirm": "Password123!"
             }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    
-    # Try to sign up with the same email again
-    response = client.post("/auth/sign_up", json={
-        "payload": {
-            "data": {
-                "email": "existinguser@example.com",
-                "password": "Password123!",
-                "password_confirm": "Password123!"
-            }
-        },
-        "user_id": "user:travel:123",
-        "screen_id": "12",
-        "project_id": "project"
-    })
-    assert response.status_code == 204
-    response_json = response.json()
-    assert "error_message" in response_json
-    assert response_json["error_message"] == "User already registered"
+        }
+    }
+    response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
+    assert response.status_code == 200
+    assert response.json() == {'error_message': 'User already registered'}

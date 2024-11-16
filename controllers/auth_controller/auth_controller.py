@@ -5,7 +5,6 @@ from utils.token import Token
 from database import get_db
 from schemas.sduf_request.sduf_request import SdufRequest, SdufEvent
 import uuid
-from pydantic import EmailStr
 from sduf.api_client import send_event
 
 router = APIRouter()
@@ -21,7 +20,6 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
         if not data or 'email' not in data or 'password' not in data:
             raise ValueError("Missing required fields (email, password)")
 
-        # Validate email format using Pydantic EmailStr
         if '@' not in data['email'] and '.' not in data['email']:
             raise ValueError("Invalid email format")
 
@@ -69,7 +67,6 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
         if not data or 'email' not in data or 'password' not in data:
             raise ValueError("Missing required fields (email, password)")
 
-        # Validate email format using Pydantic EmailStr
         if '@' not in data['email'] and '.' not in data['email']:
             raise ValueError("Invalid email format")
 

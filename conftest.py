@@ -2,9 +2,11 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from main import app  # Your FastAPI app
+from main import app
 from database import Base, get_db
 from config import settings
+from unittest.mock import patch, MagicMock
+import pytest
 
 # Configure test database connection
 DATABASE_URL = settings.TEST_DATABASE_URL
@@ -44,3 +46,13 @@ def client():
     """Provides a TestClient for making requests to the FastAPI app."""
     with TestClient(app) as test_client:
         yield test_client
+
+@pytest.fixture
+def mock_requests_post():
+    # Create a MagicMock object to mock requests.get
+    with patch('requests.post') as mock_get:
+        # Prepare a mock response object with necessary methods
+        mock_response = MagicMock()
+        mock_response.raise_for_status = MagicMock()
+        mock_get.return_value = mock_response
+        yield mock_get

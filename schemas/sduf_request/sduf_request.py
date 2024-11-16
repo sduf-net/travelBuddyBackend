@@ -6,7 +6,7 @@ class SdufRequest(BaseModel):
     user_id: str
     action: str
     user_token: Optional[str] = None
-    screen_id: int
+    screen_id: Union[str, int]
     project_id: str
 
 class SdufEvent(BaseModel):
