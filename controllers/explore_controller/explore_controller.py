@@ -64,10 +64,15 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                     },
                     {
                         "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
-                        "memo": "",
-                        "name": "SimpleRow",
+                        "name": "MangusDivWidget",
                         "nestedComponents": generate_label_widgets(),
-                        "type": "layout"
+                        "data": {
+                            "props": {
+                                "flex": 1,
+                                "flexWrap": "wrap",
+                                "flexDir": "row"
+                            }
+                        }
                     },
                     {
                         "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
