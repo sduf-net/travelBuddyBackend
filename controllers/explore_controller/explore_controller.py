@@ -63,19 +63,17 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                         "name": "MangusTextWidget"
                     },
                     {
-                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
-                        "name": "MangusDivWidget",
-                        "nestedComponents": generate_label_widgets(),
+                        "id": "cdbf8783-91a3-4043-94ae-af13f74d44dd",
+                        "memo": "",
+                        "name": "TwoColumn",
+                        "type": "layout",
                         "data": {
-                            "props": {
-                                "flex": 1,
-                                "flexWrap": "wrap",
-                                "flexDir": "row"
-                            }
-                        }
+                            "columns": 4
+                        },
+                        "nestedComponents": generate_label_widgets(),
                     },
                     {
-                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
+                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb2",
                         "memo": "",
                         "name": "TextWidget",
                         "data": {
@@ -83,7 +81,7 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                         },
                     },
                     {
-                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
+                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb3",
                         "memo": "",
                         "name": "TextWidget",
                         "data": {
