@@ -4,7 +4,7 @@ from schemas.sduf_request.sduf_request import SdufRequest
 from database import get_db
 import uuid
 import random
-from utils.randomizer import get_random_woman_name, get_random_country_code, generate_label_widgets, get_random_image
+from utils.randomizer import get_random_woman_name, get_random_country_code, generate_label_widgets, get_random_image, get_random_occupation, get_random_university_name
 
 router = APIRouter()
 
@@ -14,6 +14,8 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
     widget = {
         "data": {
             "props": {
+                "m": 10,
+                "shadow":"md",
                 "bg": "#EEEEEE",
                 "rounded": "xl"
             }
@@ -66,7 +68,23 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                         "name": "SimpleRow",
                         "nestedComponents": generate_label_widgets(),
                         "type": "layout"
-                    }
+                    },
+                    {
+                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
+                        "memo": "",
+                        "name": "TextWidget",
+                        "data": {
+                            "text": get_random_occupation()
+                        },
+                    },
+                    {
+                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb1",
+                        "memo": "",
+                        "name": "TextWidget",
+                        "data": {
+                            "text": get_random_university_name()
+                        },
+                    },
                 ]
             }
         ]

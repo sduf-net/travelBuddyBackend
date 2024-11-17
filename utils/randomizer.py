@@ -15,6 +15,28 @@ def get_random_image():
 
     return random.choice(list)
 
+def get_random_occupation():
+    occupations = [
+        "Software Engineer", "Doctor", "Teacher", "Artist", "Chef", 
+        "Scientist", "Nurse", "Architect", "Lawyer", "Musician", 
+        "Engineer", "Writer", "Photographer", "Web Developer", "Graphic Designer", 
+        "Entrepreneur", "Researcher", "Manager", "Electrician", "Plumber"
+    ]
+    
+    return random.choice(occupations)
+
+def get_random_university_name():
+    universities = [
+        "Harvard University", "Stanford University", "University of Oxford", 
+        "University of Cambridge", "Massachusetts Institute of Technology (MIT)", 
+        "University of California, Berkeley", "Yale University", "Princeton University", 
+        "University of Chicago", "Columbia University", "California Institute of Technology (Caltech)", 
+        "University of Tokyo", "University of Toronto", "ETH Zurich", "Imperial College London",
+        "Peking University", "University of Melbourne", "National University of Singapore", 
+        "University of Edinburgh", "Australian National University"
+    ]
+    return random.choice(universities)
+
 def get_random_woman_name():
     # List of random women's names
     women_names = [
