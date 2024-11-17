@@ -97,3 +97,9 @@ def generate_label_widgets():
         label_widgets.append(label_widget)
     
     return label_widgets
+
+def get_random_boolean() -> bool:
+    """
+    Returns a random boolean value (True or False).
+    """
+    return random.choice([True, False])
