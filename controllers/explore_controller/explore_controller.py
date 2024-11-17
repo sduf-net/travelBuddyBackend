@@ -97,7 +97,7 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
         "id": str(uuid.uuid4()),
         "name": "ApiWidget",
         "data": {
-            "callbackUrl": "https://4e7b-38-49-174-212.ngrok-free.app/explore"
+            "callbackUrl": "{{HOST}}/explore"
         }
     }
 
