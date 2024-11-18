@@ -1,4 +1,4 @@
-# create_db.py
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.ext.declarative import declarative_base
@@ -8,7 +8,7 @@ from database import Base
 from models import user
 
 # Define the database URL for PostgreSQL (without the database name, just the connection)
-DATABASE_URL = "postgresql://postgres:postgres@db/"  # Base URL for the PostgreSQL connection
+DATABASE_URL = os.getenv("DATABASE_URL_CREATE", "postgresql://postgres:postgres@db/")
 DATABASE_NAME = "travel_buddy_db"  # Database name to be created
 TEST_DATABASE_NAME = "test_travel_buddy_db"  # Database name to be created
 
@@ -23,8 +23,8 @@ def create_database():
     try:
         # Connect to PostgreSQL server and create the database
         with engine.connect() as connection:
-            connection.execute(f"CREATE DATABASE {DATABASE_NAME}")
-            connection.execute(f"CREATE DATABASE {TEST_DATABASE_NAME}")
+            connection.execute(f"CREATE DATABASE IF NOT EXISTS {DATABASE_NAME}")
+            connection.execute(f"CREATE DATABASE IF NOT EXISTS {TEST_DATABASE_NAME}")
             print(f"Database '{DATABASE_NAME}' created successfully.")
             print(f"Database '{TEST_DATABASE_NAME}' created successfully.")
     except OperationalError as e:

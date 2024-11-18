@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Deploy CI
 
 on:
@@ -14,13 +9,28 @@ permissions:
 
 jobs:
   deploy:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
     environment: deploy
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'  # Use the appropriate Python version for your project
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Pytest
+      run: |
+        pytest --maxfail=1 --disable-warnings -q  # You can customize pytest options as needed
+      continue-on-error: false  # Fail the deployment if pytest fails
 
     - name: Copy files to VPS
       uses: appleboy/scp-action@master
@@ -38,6 +48,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         script: |
-          cd ${{secrets.TARGET_DIR}}
+          cd ${{ secrets.TARGET_DIR }}
           pip3 install -r requirements.txt
-          nohup uvicorn main:app --reload &
+          python3 create_db.py
+          nohup uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4 &
