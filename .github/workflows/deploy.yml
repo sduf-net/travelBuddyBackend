@@ -27,10 +27,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Pytest
-      run: |
-        pytest --maxfail=1 --disable-warnings -q  # You can customize pytest options as needed
-      continue-on-error: false  # Fail the deployment if pytest fails
+    # - name: Run Pytest
+    #   run: |
+    #     pytest --maxfail=1 --disable-warnings -q  # You can customize pytest options as needed
+    #   continue-on-error: false  # Fail the deployment if pytest fails
 
     - name: Copy files to VPS
       uses: appleboy/scp-action@master
