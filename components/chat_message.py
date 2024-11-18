@@ -1,15 +1,14 @@
 import uuid
-import json
-from typing import Dict, Any
+from components.base_component import BaseComponent
 
-class ChatMessage():
-    def __init__(self, data: Dict[str, Any]):
-        self.id = uuid.uuid4(),
+class ChatMessage(BaseComponent):
+    def __init__(self, name: str, text: str, date: str, is_owner: str = False, actions: dict = {}):
+        self.id = str(uuid.uuid4()),
         self.name = "ChatMessageWidget",
-        self.data = data
-
-    def to_json(self) -> str:
-        """
-        Convert the instance to a JSON string.
-        """
-        return json.dumps(self, default=lambda obj: obj.__dict__, indent=4)
+        self.data = {
+            "name": name,
+            "text": text,
+            "date": date,
+            "is_owner": is_owner,
+            "actions": actions
+        }
