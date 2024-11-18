@@ -16,6 +16,7 @@ jobs:
   deploy:
     name: Build
     runs-on: ubuntu-latest
+    enviroment: deploy
 
     steps:
     - name: Checkout code
