@@ -23,8 +23,8 @@ def create_database():
     try:
         # Connect to PostgreSQL server and create the database
         with engine.connect() as connection:
-            connection.execute(f"CREATE DATABASE IF NOT EXISTS {DATABASE_NAME}")
-            connection.execute(f"CREATE DATABASE IF NOT EXISTS {TEST_DATABASE_NAME}")
+            connection.execute(f"SELECT 'CREATE DATABASE {DATABASE_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '{DATABASE_NAME}')")
+            connection.execute(f"SELECT 'CREATE DATABASE {TEST_DATABASE_NAME}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '{TEST_DATABASE_NAME}')")
             print(f"Database '{DATABASE_NAME}' created successfully.")
             print(f"Database '{TEST_DATABASE_NAME}' created successfully.")
     except OperationalError as e:
