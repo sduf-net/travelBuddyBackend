@@ -1,9 +1,7 @@
-from config import settings
 from sduf.api_client import send_event
 from schemas.sduf_request.sduf_request import SdufEvent
 import uuid
 
-BASE_URL = settings.SDUF_BASE_URL
 
 def test_sign_in_success(mock_requests_post):
     event = SdufEvent(

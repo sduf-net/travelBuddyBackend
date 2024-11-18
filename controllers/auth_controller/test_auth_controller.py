@@ -19,7 +19,7 @@ def test_sign_in_success(client, db_session: Session, mock_requests_post):
     mock_requests_post.assert_called_once()
     assert response.status_code == 204
 
-def test_sign_in_missing_fields(client):
+def test_sign_in_missing_fields(client, mock_requests_post):
     invalid_sign_in_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -32,8 +32,9 @@ def test_sign_in_missing_fields(client):
     response = client.post("auth/sign_in", json=invalid_sign_in_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'Missing required fields (email, password)'}
+    mock_requests_post.assert_called()
 
-def test_sign_in_invalid_email(client):
+def test_sign_in_invalid_email(client, mock_requests_post):
     invalid_sign_in_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -49,8 +50,9 @@ def test_sign_in_invalid_email(client):
     response = client.post("/auth/sign_in", json=invalid_sign_in_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'Invalid email format'}
+    mock_requests_post.assert_called()
 
-def test_sign_in_incorrect_password(client):
+def test_sign_in_incorrect_password(client, mock_requests_post):
     invalid_sign_in_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -66,6 +68,7 @@ def test_sign_in_incorrect_password(client):
     response = client.post("/auth/sign_in", json=invalid_sign_in_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'Incorrect email or password'}
+    mock_requests_post.assert_called()
 
 def test_sign_up_success(client, mock_requests_post):
     valid_sign_up_payload = {
@@ -85,7 +88,7 @@ def test_sign_up_success(client, mock_requests_post):
     assert response.status_code == 204
     mock_requests_post.assert_called()
 
-def test_sign_up_mismatched_passwords(client):
+def test_sign_up_mismatched_passwords(client, mock_requests_post):
     invalid_sign_up_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -102,8 +105,9 @@ def test_sign_up_mismatched_passwords(client):
     response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'Passwords do not match'}
+    mock_requests_post.assert_called()
 
-def test_sign_up_missing_fields(client):
+def test_sign_up_missing_fields(client, mock_requests_post):
     invalid_sign_up_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -116,8 +120,9 @@ def test_sign_up_missing_fields(client):
     response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'Missing required fields (email, password)'}
+    mock_requests_post.assert_called()
 
-def test_sign_up_user_exists(client):
+def test_sign_up_user_exists(client, mock_requests_post):
     invalid_sign_up_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",
@@ -134,3 +139,4 @@ def test_sign_up_user_exists(client):
     response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
     assert response.status_code == 200
     assert response.json() == {'error_message': 'User already registered'}
+    mock_requests_post.assert_called()

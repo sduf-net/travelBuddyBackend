@@ -1,9 +1,9 @@
-from config import settings
+from config import get_settings
 import requests
 from schemas.sduf_request.sduf_request import SdufEvent
 
-BASE_URL = settings.SDUF_BASE_URL
-PROJECT_TOKEN = settings.SDUF_PROJECT_TOKEN
+BASE_URL = get_settings().SDUF_BASE_URL
+PROJECT_TOKEN = get_settings().SDUF_PROJECT_TOKEN
 
 def send_event(body: SdufEvent):
     headers = {

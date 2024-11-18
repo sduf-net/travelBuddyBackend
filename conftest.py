@@ -4,13 +4,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from main import app
 from database import Base, get_db
-from config import settings
+from config import get_settings
 from unittest.mock import patch, MagicMock
-import pytest
 
 # Configure test database connection
-DATABASE_URL = settings.TEST_DATABASE_URL
-engine = create_engine(DATABASE_URL)
+engine = create_engine(get_settings().DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Fixture to create and drop tables in the test database

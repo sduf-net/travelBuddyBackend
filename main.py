@@ -9,7 +9,9 @@ from fastapi.responses import PlainTextResponse
 from schemas.sduf_request.sduf_request import SdufEvent
 from sduf.api_client import send_event
 import uuid
+import os
 import json
+from create_db import create_database
 
 app = FastAPI()
 
@@ -41,6 +43,11 @@ async def validation_exception_handler(request, exc):
     
     return Response(status_code=204)
 
+
+if not os.getenv("ENV"):
+    os.environ["ENV"] = "dev"
+
+create_database()
 # Initialize the database
 Base.metadata.create_all(bind=engine)
 
