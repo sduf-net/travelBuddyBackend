@@ -46,13 +46,34 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
 async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
     messages = []
     for _ in range(random.randint(10, 25)):
-        data = {
-            "name": get_random_woman_name(),
-            "text": "Lorem ipsum dolor sit amet, consectetur",
-            "date": "2021.01.01",
-            "is_owner": get_random_boolean(),
-            "actions": {}
-        }
-        message = ChatMessage(data=data)
+        message = ChatMessage(
+            name=get_random_woman_name(),
+            text="Lorem ipsum dolor sit amet, consectetur",
+            date="2021.01.01",
+            is_owner=get_random_boolean(),
+            actions={}
+        )
         messages.append(message)
     return messages
+
+
+@router.post("/new")
+async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
+    value = params.payload['params']['value']
+    message = ChatMessage(
+        name=get_random_woman_name(),
+        text=value,
+        date="2021.01.01",
+        is_owner=True,
+        actions={}
+    )
+    event = SdufEvent(
+        event_id=str(uuid.uuid4()),
+        user_id=params.user_id,
+        project_id=params.project_id,
+        screen_id=params.screen_id,
+        action="append",
+        payload={"widget": message.to_dict()}
+    )
+    send_event(event.model_dump())
+    return Response(status_code=204)
