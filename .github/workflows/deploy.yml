@@ -16,13 +16,13 @@ jobs:
       postgres:
         image: postgres:13
         env:
-          POSTGRES_USER: testuser
-          POSTGRES_PASSWORD: testpassword
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: testdb
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U testuser"
+          --health-cmd="pg_isready -U postgres"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -45,6 +45,6 @@ jobs:
       run: |
         pytest
       env:
-        DATABASE_URL: postgresql://testuser:testpassword@localhost:5432/
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/
         DATABASE_NAME: testdb
         ENV: test
