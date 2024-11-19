@@ -1,6 +1,5 @@
 import os
 from functools import lru_cache
-from dotenv import load_dotenv
 
 class Settings:
     """Production settings class"""

@@ -43,7 +43,7 @@ jobs:
 
     - name: Run tests
       run: |
-        ENV=test pytest --maxfail=1 --disable-warnings -q
+        pytest
       env:
         DATABASE_URL: postgresql://testuser:testpassword@localhost:5432/
         DATABASE_NAME: testdb
