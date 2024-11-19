@@ -43,7 +43,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest
+        pytest --disable-warnings -q
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/
         DATABASE_NAME: testdb
