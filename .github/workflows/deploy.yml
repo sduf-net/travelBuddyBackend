@@ -48,10 +48,22 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         script: |
+          export ENV=prod
           export DATABASE_URL=${{ secrets.DATABASE_URL }}
-          export DATABASE_URL_CREATE=${{ secrets.DATABASE_URL_CREATE }}
+          export DATABASE_NAME=${{ secrets.DATABASE_NAME }}
+          SDUF_PROJECT_TOKEN=${{ secrets.SDUF_PROJECT_TOKEN }}
+          SECRET_KEY=${{ secrets.SECRET_KEY }}
 
           cd ${{ secrets.TARGET_DIR }}
+
+          # Find and kill any running uvicorn processes
+          PID=$(ps aux | grep 'uvicorn main:app' | grep -v 'grep' | awk '{print $2}')
+          if [ ! -z "$PID" ]; then
+            echo "Killing running uvicorn process with PID $PID"
+            kill -9 $PID
+          else
+            echo "No running uvicorn process found."
+          fi
+
           pip3 install -r requirements.txt
-          python3 create_db.py
-          nohup uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4 &
+          nohup uvicorn main:app --host 144.126.138.185 --port 8000 --workers 4 &
