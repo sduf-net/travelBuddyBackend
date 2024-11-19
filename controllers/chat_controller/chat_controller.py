@@ -12,7 +12,7 @@ from sduf.api_client import send_event
 router = APIRouter()
 
 @router.post("/list")
-async def profile(params: SdufRequest, db: Session = Depends(get_db)):
+async def chat_list(params: SdufRequest, db: Session = Depends(get_db)):
     chat_preview = {
         "data": {
             "actions": {
@@ -43,7 +43,7 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
     return [chat_preview, api_widget]
 
 @router.post("/id")
-async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
+async def chat(params: SdufRequest, db: Session = Depends(get_db)):
     messages = []
     for _ in range(random.randint(10, 25)):
         message = ChatMessage(
@@ -58,7 +58,7 @@ async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/new")
-async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
+async def new_message(params: SdufRequest, db: Session = Depends(get_db)):
     value = params.payload['params']['value']
     message = ChatMessage(
         name=get_random_woman_name(),

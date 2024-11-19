@@ -41,18 +41,16 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
         ]
     }
 
-    data = {
-          "event_id": str(uuid.uuid4()),
-          "user_id": params.user_id,
-          "project_id": params.project_id,
-          "screen_id": params.screen_id,
-          "action": "replace",
-          "payload": {"parent_id": params.payload["parent_id"], "widget": widget}
-    }
-
-    send_event(data)
-    return {"message": "OK"}
+    return [widget]
 
 @router.post("/edit")
 async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
+     return {"message": "Implement me"}
+
+@router.post("/me")
+async def profile_me(params: SdufRequest, db: Session = Depends(get_db)):
+     return {"message": "Implement me"}
+
+@router.post("/details")
+async def profile_details(params: SdufRequest, db: Session = Depends(get_db)):
      return {"message": "Implement me"}

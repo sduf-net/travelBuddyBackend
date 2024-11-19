@@ -12,82 +12,96 @@ router = APIRouter()
 async def profile(params: SdufRequest, db: Session = Depends(get_db)):
     print(params)
     widget = {
+        "id": str(uuid.uuid4()),
+        "name": "Touchable",
         "data": {
-            "props": {
-                "m": 10,
-                "shadow":"md",
-                "bg": "#EEEEEE",
-                "rounded": "xl"
+            "actions": {
+                "click": {
+                    "type": "navigate_to",
+                    "screen_name": "profile_details"
+                }
             }
         },
-        "id": str(uuid.uuid4()),
-        "name": "MangusDivWidget",
         "nestedComponents": [
             {
                 "data": {
                     "props": {
-                        "m": 10
+                        "m": 10,
+                        "shadow":"md",
+                        "bg": "#EEEEEE",
+                        "rounded": "xl"
                     }
                 },
-                "id": "fdeebe1f-609b-40b1-83f3-f5ea94bfc4b0",
-                "memo": "",
+                "id": str(uuid.uuid4()),
                 "name": "MangusDivWidget",
                 "nestedComponents": [
                     {
                         "data": {
                             "props": {
-                                "bgImg": {
-                                    "uri": get_random_image(),
-                                },
-                                "h": 350,
-                                "resizeMode": "cover",
-                                "rounded": "xl"
+                                "m": 10
                             }
                         },
-                        "id": "iba5b577-eb63-48bd-82e9-441d1ae42647",
+                        "id": "fdeebe1f-609b-40b1-83f3-f5ea94bfc4b0",
                         "memo": "",
                         "name": "MangusDivWidget",
-                        "nestedComponents": []
-                    },
-                    {
-                        "data": {
-                            "props": {
-                                "fontSize": "2xl",
-                                "m": "lg",
-                                "ml": "none"
+                        "nestedComponents": [
+                            {
+                                "data": {
+                                    "props": {
+                                        "bgImg": {
+                                            "uri": get_random_image(),
+                                        },
+                                        "h": 350,
+                                        "resizeMode": "cover",
+                                        "rounded": "xl"
+                                    }
+                                },
+                                "id": "iba5b577-eb63-48bd-82e9-441d1ae42647",
+                                "memo": "",
+                                "name": "MangusDivWidget",
+                                "nestedComponents": []
                             },
-                            "text": f"{get_random_woman_name()}, {random.randint(24, 32)}, {get_random_country_code()}"
-                        },
-                        "id": "9b75877f-58f2-4208-884c-e31e612bcb5f",
-                        "memo": "",
-                        "name": "MangusTextWidget"
-                    },
-                    {
-                        "id": "cdbf8783-91a3-4043-94ae-af13f74d44dd",
-                        "memo": "",
-                        "name": "TwoColumn",
-                        "type": "layout",
-                        "data": {
-                            "columns": 4
-                        },
-                        "nestedComponents": generate_label_widgets(),
-                    },
-                    {
-                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb2",
-                        "memo": "",
-                        "name": "TextWidget",
-                        "data": {
-                            "text": get_random_occupation()
-                        },
-                    },
-                    {
-                        "id": "ce3e0740-6588-4852-8314-e92d8ac33bb3",
-                        "memo": "",
-                        "name": "TextWidget",
-                        "data": {
-                            "text": get_random_university_name()
-                        },
-                    },
+                            {
+                                "data": {
+                                    "props": {
+                                        "fontSize": "2xl",
+                                        "m": "lg",
+                                        "ml": "none"
+                                    },
+                                    "text": f"{get_random_woman_name()}, {random.randint(24, 32)}, {get_random_country_code()}"
+                                },
+                                "id": "9b75877f-58f2-4208-884c-e31e612bcb5f",
+                                "memo": "",
+                                "name": "MangusTextWidget"
+                            },
+                            {
+                                "id": "cdbf8783-91a3-4043-94ae-af13f74d44dd",
+                                "memo": "",
+                                "name": "TwoColumn",
+                                "type": "layout",
+                                "data": {
+                                    "columns": 4
+                                },
+                                "nestedComponents": generate_label_widgets(),
+                            },
+                            {
+                                "id": "ce3e0740-6588-4852-8314-e92d8ac33bb2",
+                                "memo": "",
+                                "name": "TextWidget",
+                                "data": {
+                                    "text": get_random_occupation()
+                                },
+                            },
+                            {
+                                "id": "ce3e0740-6588-4852-8314-e92d8ac33bb3",
+                                "memo": "",
+                                "name": "TextWidget",
+                                "data": {
+                                    "text": get_random_university_name()
+                                },
+                            },
+                        ]
+                    }
                 ]
             }
         ]
