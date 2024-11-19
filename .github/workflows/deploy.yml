@@ -65,5 +65,7 @@ jobs:
             echo "No running uvicorn process found."
           fi
 
+          sudo kill -9 $(sudo lsof -t -i:8000)
+
           pip3 install -r requirements.txt
           uvicorn main:app --host 144.126.138.185 --port 8000 --workers 4
