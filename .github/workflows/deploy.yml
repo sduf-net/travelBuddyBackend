@@ -11,7 +11,6 @@ jobs:
   deploy:
     name: Build, Test, and Deploy
     runs-on: ubuntu-latest
-    # environment: deploy
 
     services:
       postgres:
@@ -44,7 +43,7 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest --maxfail=1 --disable-warnings -q
+        ENV=test pytest --maxfail=1 --disable-warnings -q
       env:
         DATABASE_URL: postgresql://testuser:testpassword@localhost:5432/
         DATABASE_NAME: testdb
