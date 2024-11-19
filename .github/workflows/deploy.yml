@@ -51,8 +51,8 @@ jobs:
           export ENV=prod
           export DATABASE_URL=${{ secrets.DATABASE_URL }}
           export DATABASE_NAME=${{ secrets.DATABASE_NAME }}
-          SDUF_PROJECT_TOKEN=${{ secrets.SDUF_PROJECT_TOKEN }}
-          SECRET_KEY=${{ secrets.SECRET_KEY }}
+          export SDUF_PROJECT_TOKEN=${{ secrets.SDUF_PROJECT_TOKEN }}
+          export SECRET_KEY=${{ secrets.SECRET_KEY }}
 
           cd ${{ secrets.TARGET_DIR }}
 
@@ -66,4 +66,4 @@ jobs:
           fi
 
           pip3 install -r requirements.txt
-          nohup uvicorn main:app --host 144.126.138.185 --port 8000 --workers 4 &
+          uvicorn main:app --host 144.126.138.185 --port 8000 --workers 4
