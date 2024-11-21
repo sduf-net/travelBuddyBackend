@@ -1,6 +1,6 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-RUN apt-get update && apt-get install -y curl git
+RUN apt-get update && apt-get install -y curl git python3-pip
 RUN curl -sfL https://direnv.net/install.sh | bash
 RUN echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 # Optionally, ensure that .bashrc is sourced in non-interactive shells
