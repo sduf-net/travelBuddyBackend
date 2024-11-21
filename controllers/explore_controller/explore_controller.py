@@ -1,9 +1,9 @@
+import uuid
+import random
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from schemas.sduf_request.sduf_request import SdufRequest
 from database import get_db
-import uuid
-import random
 from utils.randomizer import get_random_woman_name, get_random_country_code, generate_label_widgets, get_random_image, get_random_occupation, get_random_university_name
 
 router = APIRouter()

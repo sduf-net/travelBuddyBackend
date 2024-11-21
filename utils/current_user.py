@@ -9,7 +9,7 @@ from utils.token import Token
 
 # Define the body model for the token
 class TokenRequest(BaseModel):
-    user_token: Optional[str] = None
+    user_token: str
 
 def get_current_user(params: TokenRequest, db: Annotated[Session, Depends(get_db)]) -> User:
     """ Dependency to get the current user from the token """

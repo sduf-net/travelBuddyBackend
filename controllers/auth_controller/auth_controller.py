@@ -1,13 +1,15 @@
+# pylint: disable=C0114,C0116
+import uuid
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 from repositories.user_repository.user_repository import UserRepository
 from utils.token import Token
 from database import get_db
 from schemas.sduf_request.sduf_request import SdufRequest, SdufEvent
-import uuid
 from sduf.api_client import send_event
 
 router = APIRouter()
+
 
 @router.post("/sign_in")
 async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
@@ -27,7 +29,7 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
         user = UserRepository.get_by_email(db, data['email'])
         if user and user.check_password(data['password']):
             # Generate a token for the user if authentication is successful
-            token = Token.generate_and_sign(user.id)
+            token = Token.generate_and_sign(user_id=str(user.id))
 
             event = SdufEvent(
                 event_id=str(uuid.uuid4()),
@@ -39,7 +41,7 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
             )
             send_event(event)
             return Response(status_code=204)
-        else: 
+        else:
             raise ValueError("Incorrect email or password")
     except ValueError as e:
         error_message = str(e)
@@ -79,8 +81,9 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
             raise ValueError("User already registered")
 
         # Create the new user
-        user = UserRepository.save(db, email=data['email'], password=data['password'])
-        token = Token.generate_and_sign(user.id)
+        user = UserRepository.save(
+            db, email=data['email'], password=data['password'])
+        token = Token.generate_and_sign(user_id=str(user.id))
 
         # Send login success event
         event = SdufEvent(

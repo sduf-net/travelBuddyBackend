@@ -13,5 +13,4 @@ class UserRepository:
 
     @staticmethod
     def get_by_email(session: Session, email: str):
-        print(session)
         return session.query(User).filter(User.email == email).first()
