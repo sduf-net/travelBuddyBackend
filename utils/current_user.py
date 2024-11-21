@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from models.user import User
 from database import get_db 
+from typing import Annotated
 from typing import Optional
 from utils.token import Token
 
@@ -10,7 +11,7 @@ from utils.token import Token
 class TokenRequest(BaseModel):
     user_token: Optional[str] = None
 
-def get_current_user(params: TokenRequest, db: Session = Depends(get_db)) -> User:
+def get_current_user(params: TokenRequest, db: Annotated[Session, Depends(get_db)]) -> User:
     """ Dependency to get the current user from the token """
     payload = Token.verify_token(params.user_token)
     

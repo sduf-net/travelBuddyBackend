@@ -1,18 +1,22 @@
 from fastapi import APIRouter, Depends, Response
 import random
+from typing import Annotated
 from sqlalchemy.orm import Session
 from schemas.sduf_request.sduf_request import SdufEvent, SdufRequest
 from repositories.user_repository.user_repository import UserRepository
 from database import get_db
 from utils.randomizer import get_random_boolean, get_random_image, get_random_woman_name
 import uuid
+from models.user import User
 from components.chat_message import ChatMessage
 from sduf.api_client import send_event
+from utils.current_user import get_current_user
 
 router = APIRouter()
 
+# protected route
 @router.post("/list")
-async def chat_list(params: SdufRequest, db: Session = Depends(get_db)):
+async def chat_list(params: SdufRequest, db: Session = Depends(get_db), current_user: Annotated[User | None, Depends(get_current_user)] = None):
     chat_preview = {
         "data": {
             "actions": {
