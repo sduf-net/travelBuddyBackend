@@ -39,7 +39,7 @@ async def validation_exception_handler(request, exc):
         action="show_error_message",
         payload={"error_message": all_errors}
     )
-    send_event(event.model_dump())
+    send_event(event)
     
     return Response(status_code=204)
 

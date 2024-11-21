@@ -37,7 +37,7 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
                 action="login",
                 payload={"id": user.id, "token": token}
             )
-            send_event(event.model_dump())
+            send_event(event)
             return Response(status_code=204)
         else: 
             raise ValueError("Incorrect email or password")
@@ -52,7 +52,7 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
             action="show_error_message",
             payload={"error_message": error_message}
         )
-        send_event(event.model_dump())
+        send_event(event)
         return {"error_message": error_message}
 
 
@@ -91,7 +91,7 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
             action="login",
             payload={"id": user.id, "token": token}
         )
-        send_event(event.model_dump())
+        send_event(event)
 
         # Send close popup event
         event = SdufEvent(
@@ -102,7 +102,7 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
             action="close_popup",
             payload={}
         )
-        send_event(event.model_dump())
+        send_event(event)
 
         return Response(status_code=204)
     except ValueError as e:
@@ -116,5 +116,5 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
             action="show_error_message",
             payload={"error_message": error_message}
         )
-        send_event(event.model_dump())
+        send_event(event)
         return {"error_message": error_message}

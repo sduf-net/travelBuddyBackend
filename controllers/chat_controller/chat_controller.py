@@ -75,5 +75,5 @@ async def new_message(params: SdufRequest, db: Session = Depends(get_db)):
         action="append",
         payload={"widget": message.to_dict()}
     )
-    send_event(event.model_dump())
+    send_event(event)
     return Response(status_code=204)
