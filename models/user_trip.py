@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, ForeignKey, Date, Text
+from sqlalchemy import Column, String, ForeignKey, Date, Text, DateTime, func
 from sqlalchemy.orm import relationship
 from database import Base
 import uuid
@@ -15,6 +15,8 @@ class UserTrip(Base):
     city = Column(String, nullable=True)
     private_note = Column(Text, nullable=True)
     public_note = Column(Text, nullable=True)
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
+    created_at = Column(DateTime, default=func.now(), nullable=False)
 
     # Relationship with User
     user = relationship("User", back_populates="user_trips")
