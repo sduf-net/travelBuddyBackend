@@ -51,7 +51,11 @@ async def chat_list(
 
 
 @router.post("/id")
-async def chat(params: SdufRequest, db: Session = Depends(get_db)):
+async def chat(
+        params: SdufRequest,
+        db: Session = Depends(get_db),
+        current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
     messages = []
     for _ in range(random.randint(10, 25)):
         message = ChatMessage(
@@ -66,7 +70,11 @@ async def chat(params: SdufRequest, db: Session = Depends(get_db)):
 
 
 @router.post("/new")
-async def new_message(params: SdufRequest, db: Session = Depends(get_db)):
+async def new_message(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
     value = params.payload['params']['value']
     message = ChatMessage(
         name=get_random_woman_name(),

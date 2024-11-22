@@ -1,15 +1,20 @@
-from fastapi import APIRouter, HTTPException, Depends
+from typing import Annotated
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from schemas.sduf_request.sduf_request import SdufRequest
-from repositories.user_repository.user_repository import UserRepository
 from database import get_db
-from sduf.api_client import send_event
-import uuid
+from utils.current_user import get_current_user
+from models.user import User
 
 router = APIRouter()
 
+
 @router.post("")
-async def profile(params: SdufRequest, db: Session = Depends(get_db)):
+async def profile(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
     widget = {
         "data": {
             "props": {
@@ -43,14 +48,29 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
 
     return [widget]
 
+
 @router.post("/edit")
-async def profile_edit(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Implement me"}
+async def profile_edit(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
+    return {"message": "Implement me"}
+
 
 @router.post("/me")
-async def profile_me(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Implement me"}
+async def profile_me(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
+    return {"message": "Implement me"}
+
 
 @router.post("/details")
-async def profile_details(params: SdufRequest, db: Session = Depends(get_db)):
-     return {"message": "Implement me"}
+async def profile_details(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
+    return {"message": "Implement me"}
