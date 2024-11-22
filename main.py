@@ -1,16 +1,15 @@
+import uuid
+import os
+import json
 from fastapi import FastAPI, Response
-from database import Base, engine
 from fastapi.exceptions import RequestValidationError
+from database import Base, engine
 from controllers.auth_controller import auth_controller
 from controllers.profile_controller import profile_controller
 from controllers.explore_controller import explore_controller
 from controllers.chat_controller import chat_controller
-from fastapi.responses import PlainTextResponse
 from schemas.sduf_request.sduf_request import SdufEvent
 from sduf.api_client import send_event
-import uuid
-import os
-import json
 from create_db import create_database
 
 app = FastAPI()
