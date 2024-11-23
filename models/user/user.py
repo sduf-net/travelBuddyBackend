@@ -3,6 +3,7 @@ import uuid
 import bcrypt
 from database import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -12,5 +13,15 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     created_at = Column(DateTime, default=func.now(), nullable=False)
 
+    def __init__(self, email: str, password: str):
+        hashed_password = bcrypt.hashpw(
+            password.encode(), bcrypt.gensalt()).decode()
+        self.email = email
+        self.hashed_password = hashed_password
+
     def check_password(self, password: str) -> bool:
         return bcrypt.checkpw(password.encode(), self.hashed_password.encode())
+
+    def set_email_verified(self):
+        self.email_verified = True
+        return self

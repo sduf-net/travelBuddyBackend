@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from schemas.sduf_request.sduf_request import SdufRequest
 from database import get_db
 from utils.current_user import get_current_user
-from models.user import User
+from models.user.user import User
 
 router = APIRouter()
 

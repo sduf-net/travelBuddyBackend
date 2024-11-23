@@ -8,7 +8,8 @@ from config import get_settings
 from unittest.mock import patch, MagicMock
 
 # Configure test database connection
-engine = create_engine(get_settings().DATABASE_URL)
+DATABASE = f"{get_settings().DATABASE_URL}{get_settings().DATABASE_NAME}"
+engine = create_engine(DATABASE)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Fixture to create and drop tables in the test database

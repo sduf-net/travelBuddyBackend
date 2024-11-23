@@ -7,7 +7,7 @@ from schemas.sduf_request.sduf_request import SdufEvent, SdufRequest
 from database import get_db
 from utils.randomizer import get_random_boolean, get_random_image, get_random_woman_name
 from utils.current_user import get_current_user
-from models.user import User
+from models.user.user import User
 from components.chat_message import ChatMessage
 from sduf.api_client import send_event
 

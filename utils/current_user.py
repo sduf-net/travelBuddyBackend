@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from models.user import User
+from models.user.user import User
 from database import get_db 
 from typing import Annotated
 from typing import Optional

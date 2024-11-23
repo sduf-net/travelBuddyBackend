@@ -1,8 +1,8 @@
+import uuid
 from sqlalchemy import Column, String, ForeignKey, Text
 from sqlalchemy.dialects.postgresql import ARRAY, JSON
 from sqlalchemy.orm import relationship
 from database import Base
-import uuid
 
 class UserInfo(Base):
     __tablename__ = "user_info"
@@ -14,4 +14,9 @@ class UserInfo(Base):
     pictures = Column(ARRAY(String), nullable=True)
     geo = Column(JSON, nullable=True)
 
-    user = relationship("User", back_populates="user_info")
+    def __init__(self, user_id: str, bio: str, gender: str, pictures: list | None = None, geo: dict | None = None):
+        self.user_id = user_id
+        self.bio = bio
+        self.gender = gender
+        self.pictures = pictures
+        self.geo = geo

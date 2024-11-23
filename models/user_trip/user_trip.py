@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String, ForeignKey, Date, Text, DateTime, func
+from datetime import date
 from sqlalchemy.orm import relationship
 from database import Base
 import uuid
+
 
 class UserTrip(Base):
     __tablename__ = "user_trips"
@@ -15,8 +17,22 @@ class UserTrip(Base):
     city = Column(String, nullable=True)
     private_note = Column(Text, nullable=True)
     public_note = Column(Text, nullable=True)
-    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
+    updated_at = Column(DateTime, default=func.now(),
+                        onupdate=func.now(), nullable=False)
     created_at = Column(DateTime, default=func.now(), nullable=False)
 
-    # Relationship with User
-    user = relationship("User", back_populates="user_trips")
+    def __init__(
+        self,
+        user_id: str,
+        start_date: date,
+        end_date: date,
+        country: str,
+        province: str | None = None,
+        city: str | None = None
+    ):
+        self.user_id = user_id
+        self.start_date = start_date
+        self.end_date = end_date
+        self.country = country
+        self.province = province
+        self.city = city

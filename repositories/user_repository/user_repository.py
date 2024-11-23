@@ -1,12 +1,10 @@
 from sqlalchemy.orm import Session
-from models.user import User
-import bcrypt
+from models.user.user import User
+
 
 class UserRepository:
     @staticmethod
-    def save(session: Session, email: str, password: str):
-        hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-        user = User(email=email, hashed_password=hashed_password)
+    def save(session: Session, user: User):
         session.add(user)
         session.commit()
         return user

@@ -3,6 +3,7 @@ import uuid
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 from repositories.user_repository.user_repository import UserRepository
+from models.user.user import User
 from utils.token import Token
 from database import get_db
 from schemas.sduf_request.sduf_request import SdufRequest, SdufEvent
@@ -80,9 +81,9 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
         if UserRepository.get_by_email(db, data['email']):
             raise ValueError("User already registered")
 
+        user = User(email=data['email'], password=data['password'])
         # Create the new user
-        user = UserRepository.save(
-            db, email=data['email'], password=data['password'])
+        user = UserRepository.save(db, user)
         token = Token.generate_and_sign(user_id=str(user.id))
 
         # Send login success event
