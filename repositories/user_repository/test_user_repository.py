@@ -23,3 +23,15 @@ def test_get_user_by_email(db_session: Session):
     user = UserRepository.get_by_email(db_session, email)
     assert user is not None
     assert str(user.email) == email
+
+def test_get_user_by_id(db_session: Session):
+    """Test retrieving a user by id."""
+    # First, create a user in the database
+    email = f"{uuid.uuid4()}@example.com"
+    user = User(email=email, password="Password123!")
+    saved_user = UserRepository.save(db_session, user)
+    # Now, retrieve the user by email
+    user = UserRepository.get_by_id(db_session, saved_user.id)
+    assert user is not None
+    assert str(user.email) == email
+    assert str(user.id) == str(saved_user.id)
