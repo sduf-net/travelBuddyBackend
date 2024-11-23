@@ -4,6 +4,7 @@ from sqlalchemy.dialects.postgresql import ARRAY, JSON
 from sqlalchemy.orm import relationship
 from database import Base
 
+
 class UserInfo(Base):
     __tablename__ = "user_info"
 
@@ -20,3 +21,11 @@ class UserInfo(Base):
         self.gender = gender
         self.pictures = pictures
         self.geo = geo
+
+    def with_pictures(self, pictures: list | None = None):
+        self.pictures = pictures
+        return self
+
+    def with_geo(self, geo: dict | None = None):
+        self.geo = geo
+        return self
