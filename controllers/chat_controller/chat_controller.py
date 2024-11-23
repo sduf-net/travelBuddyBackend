@@ -10,6 +10,7 @@ from utils.current_user import get_current_user
 from models.user.user import User
 from components.chat_message import ChatMessage
 from sduf.api_client import send_event
+from models.conversation.conversation import Conversation
 
 router = APIRouter()
 
@@ -69,7 +70,7 @@ async def chat(
     return messages
 
 
-@router.post("/new")
+@router.post("/new-message")
 async def new_message(
     params: SdufRequest,
     db: Session = Depends(get_db),
@@ -92,4 +93,27 @@ async def new_message(
         payload={"widget": message.to_dict()}
     )
     send_event(event)
+    return Response(status_code=204)
+
+
+@router.post("/new-conversation")
+async def new_conversation(
+    params: SdufRequest,
+    db: Session = Depends(get_db),
+    current_user: Annotated[User | None, Depends(get_current_user)] = None
+):
+    opponent_user_id = params.payload['params']['opponent_user_id']
+    conversation = Conversation(
+        user_id=current_user.id, 
+        opponent_user_id=opponent_user_id
+    )
+    # event = SdufEvent(
+    #     event_id=str(uuid.uuid4()),
+    #     user_id=params.user_id,
+    #     project_id=params.project_id,
+    #     screen_id=params.screen_id,
+    #     action="append",
+    #     payload={"widget": message.to_dict()}
+    # )
+    # send_event(event)
     return Response(status_code=204)
