@@ -1,11 +1,17 @@
 from sqlalchemy.orm import Session
 from models.user.user import User
+from models.user_info.user_info import UserInfo
 from repositories.user_repository.user_repository import UserRepository
+from repositories.user_info_repository.user_info_repository import UserInfoRepository
 
 
 def test_sign_in_success(client, db_session: Session, mock_requests_post):
-    user = User(email="testuser1@example.com", password="Password123!")
+    user = User()
+    user_info = UserInfo(user_id=user.id, email="testuser1@example.com", password="Password123!")
+
     UserRepository.save(db_session, user)
+    UserInfoRepository.save(db_session, user_info)
+
     valid_sign_in_payload = {
         "user_id": "user-uuid",
         "action": "user-uuid",

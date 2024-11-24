@@ -3,7 +3,9 @@ import uuid
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 from repositories.user_repository.user_repository import UserRepository
+from repositories.user_info_repository.user_info_repository import UserInfoRepository
 from models.user.user import User
+from models.user_info.user_info import UserInfo
 from utils.token import Token
 from database import get_db
 from schemas.sduf_request.sduf_request import SdufRequest, SdufEvent
@@ -27,7 +29,7 @@ async def sign_in(params: SdufRequest, db: Session = Depends(get_db)):
             raise ValueError("Invalid email format")
 
         # Authenticate user
-        user = UserRepository.get_by_email(db, data['email'])
+        user = UserInfoRepository.get_by_email(db, data['email'])
         if user and user.check_password(data['password']):
             # Generate a token for the user if authentication is successful
             token = Token.generate_and_sign(user_id=str(user.id))
@@ -78,14 +80,18 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
             raise ValueError("Passwords do not match")
 
         # Check if the user already exists
-        if UserRepository.get_by_email(db, data['email']):
+        if UserInfoRepository.get_by_email(db, data['email']):
             raise ValueError("User already registered")
 
-        user = User(email=data['email'], password=data['password'])
+        user = User()
+        user_info = UserInfo(user_id=str(user.id),
+                             email=data['email'], password=data['password'])
+
         # Create the new user
         user = UserRepository.save(db, user)
-        token = Token.generate_and_sign(user_id=str(user.id))
+        user_info = UserInfoRepository.save(db, user_info)
 
+        token = Token.generate_and_sign(user_id=str(user.id))
         # Send login success event
         event = SdufEvent(
             event_id=str(uuid.uuid4()),
@@ -109,7 +115,7 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
         send_event(event)
 
         return Response(status_code=204)
-    except ValueError as e:
+    except Exception as e:
         error_message = str(e)
         # If authentication fails, send an error message
         event = SdufEvent(

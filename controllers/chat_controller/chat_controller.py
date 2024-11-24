@@ -21,6 +21,7 @@ async def chat_list(
     db: Session = Depends(get_db),
     current_user: Annotated[User | None, Depends(get_current_user)] = None
 ):
+    print(current_user.__dict__)
     chat_preview = {
         "data": {
             "actions": {
