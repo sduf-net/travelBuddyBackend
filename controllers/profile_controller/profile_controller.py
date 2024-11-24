@@ -1,3 +1,4 @@
+import uuid
 from typing import Annotated
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -17,33 +18,48 @@ async def profile(
     db: Session = Depends(get_db),
     current_user: Annotated[User | None, Depends(get_current_user)] = None
 ):
+    # profile_preview
     widget = {
+        "id": str(uuid.uuid4()),
+        "name": "Touchable",
         "data": {
-            "props": {
-                "alignItems": "center",
-                "justifyContent": "center",
-                "mt": 40
+            "actions": {
+                "click": {
+                    "type": "navigate_to",
+                    "screen_name": "profile_preview"
+                }
             }
         },
-        "id": "1845cb9e-4ad6-4ba3-b3f1-67b2ee7b4181",
-        "memo": "",
-        "name": "MangusDivWidget",
         "nestedComponents": [
             {
                 "data": {
                     "props": {
-                        "h": 100,
-                        "m": 10,
-                        "rounded": "circle",
-                        "source": {
-                            "uri": "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-                        },
-                        "w": 100
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "mt": 40
                     }
                 },
-                "id": "880d86bb-2060-47f3-9391-60b9c606e958",
+                "id": "1845cb9e-4ad6-4ba3-b3f1-67b2ee7b4181",
                 "memo": "",
-                "name": "MangusImageWidget"
+                "name": "MangusDivWidget",
+                "nestedComponents": [
+                    {
+                        "data": {
+                            "props": {
+                                "h": 100,
+                                "m": 10,
+                                "rounded": "circle",
+                                "source": {
+                                    "uri": "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                                },
+                                "w": 100
+                            }
+                        },
+                        "id": "880d86bb-2060-47f3-9391-60b9c606e958",
+                        "memo": "",
+                        "name": "MangusImageWidget"
+                    }
+                ]
             }
         ]
     }
