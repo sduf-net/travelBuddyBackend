@@ -5,6 +5,8 @@ from schemas.sduf_request.sduf_request import SdufRequest
 from database import get_db
 from utils.current_user import get_current_user
 from models.user.user import User
+from components.image import Image
+from components.text import Text
 
 router = APIRouter()
 
@@ -73,4 +75,9 @@ async def profile_details(
     db: Session = Depends(get_db),
     current_user: Annotated[User | None, Depends(get_current_user)] = None
 ):
-    return {"message": "Implement me"}
+    image = params.payload['params']['extra']['image_url']
+    title = params.payload['params']['extra']['title']
+
+    image_widget = Image(image)
+    text_widget = Text(title)
+    return [image_widget.to_dict(), text_widget.to_dict()]

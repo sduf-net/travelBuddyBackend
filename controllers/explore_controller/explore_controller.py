@@ -10,7 +10,8 @@ router = APIRouter()
 
 @router.post("")
 async def profile(params: SdufRequest, db: Session = Depends(get_db)):
-    print(params)
+    image = get_random_image()
+    titile = f"{get_random_woman_name()}, {random.randint(24, 32)}, {get_random_country_code()}"
     widget = {
         "id": str(uuid.uuid4()),
         "name": "Touchable",
@@ -18,7 +19,11 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
             "actions": {
                 "click": {
                     "type": "navigate_to",
-                    "screen_name": "profile_details"
+                    "screen_name": "profile_details",
+                    "extra": {
+                        "image_url": image,
+                        "title": titile,
+                    }
                 }
             }
         },
@@ -49,7 +54,7 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                                 "data": {
                                     "props": {
                                         "bgImg": {
-                                            "uri": get_random_image(),
+                                            "uri": image,
                                         },
                                         "h": 350,
                                         "resizeMode": "cover",
@@ -68,7 +73,7 @@ async def profile(params: SdufRequest, db: Session = Depends(get_db)):
                                         "m": "lg",
                                         "ml": "none"
                                     },
-                                    "text": f"{get_random_woman_name()}, {random.randint(24, 32)}, {get_random_country_code()}"
+                                    "text": titile
                                 },
                                 "id": "9b75877f-58f2-4208-884c-e31e612bcb5f",
                                 "memo": "",
