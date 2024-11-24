@@ -115,7 +115,7 @@ async def sign_up(params: SdufRequest, db: Session = Depends(get_db)):
         send_event(event)
 
         return Response(status_code=204)
-    except Exception as e:
+    except ValueError as e:
         error_message = str(e)
         # If authentication fails, send an error message
         event = SdufEvent(
