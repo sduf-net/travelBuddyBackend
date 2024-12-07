@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Build, Test, and Deploy
+    name: Test
     runs-on: ubuntu-latest
 
     services:
