@@ -6,7 +6,7 @@ __pycache__/
 *$py.class
 *.vscode
 .vscode
-.envrc
+
 # C extensions
 *.so
 
@@ -59,6 +59,7 @@ coverage.xml
 .env
 .env.*
 *.env.*
+.envrc
 
 # Pyre type checker
 .pyre/

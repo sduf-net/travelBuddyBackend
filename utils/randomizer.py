@@ -2,15 +2,15 @@ import random
 
 def get_random_image():
     list = [
-        "https://assets.lummi.ai/assets/Qmc3GrgE6mk5pbinaGfC1z3jwGxPiHgJz7egNpWWyJzJhC?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmWUbmYZyGQ5aF28XNxpTnD5RqCvVcTQzupzQE1JxjuFN6?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmR1cEcBycv7afSXsYxiByTZW8HyMtfVwqt487aTYTfBt2?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmPo81ShQkQKgfVSPJvymTnpqGwCdTZYfrqmqmMQMSLzbm?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmcUcrTT7eY2uF4CFQgDRRVc5b7UnxXDHti1QaCLeawq4Q?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmeU2hXe4C9kDf81Y38vRSmfL6A5gyd2XZVTAcNMwdF1qj?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmNUe8hWxH5J77JTFkqHmTdjLZbfNkLVFYG9rt51d9r12r?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmYFHqMn8HG9gFNmrwRJMEazyemynfPV2FTVL4b4JLQcD6?auto=format&w=1500",
-        "https://assets.lummi.ai/assets/QmUhHbVRZzwKjsiNbuQCAesbn6aZ9YLLZykaY1usZKx2k9?auto=format&w=1500"
+        "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=800",
+        'https://images.pexels.com/photos/2079234/pexels-photo-2079234.jpeg?auto=compress&cs=tinysrgb&w=800',
+        "https://images.pexels.com/photos/221540/pexels-photo-221540.jpeg?auto=compress&cs=tinysrgb&w=800"
     ]
 
     return random.choice(list)
@@ -37,17 +37,16 @@ def get_random_university_name():
     ]
     return random.choice(universities)
 
-def get_random_woman_name():
-    # List of random women's names
-    women_names = [
-        "Sophia", "Olivia", "Emma", "Ava", "Isabella", "Mia", "Amelia", 
-        "Harper", "Evelyn", "Abigail", "Ella", "Scarlett", "Grace", 
-        "Chloe", "Lily", "Aria", "Zoey", "Nora", "Riley", "Charlotte", 
-        "Luna", "Hazel", "Layla", "Ellie", "Zoe", "Mila", "Sophie"
+def get_random_city_name():
+    city_names = [
+        "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", 
+        "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose",
+        "Austin", "Jacksonville", "San Francisco", "Columbus", "Indianapolis",
+        "Seattle", "Denver", "Washington", "Boston", "El Paso", 
+        "Detroit", "Nashville", "Portland", "Memphis", "Oklahoma City"
     ]
     
-    # Get a random name from the list
-    return random.choice(women_names)
+    return random.choice(city_names)
 
 def get_random_country_code():
     # List of random country codes

@@ -12,8 +12,8 @@ services:
 
     command: sleep infinity
 
-  db:
-    image: postgres:latest
+  db_bytes:
+    image: postgres:16
     restart: unless-stopped
     ports:
       - "5434:5432"

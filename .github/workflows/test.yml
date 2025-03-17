@@ -1,14 +1,18 @@
-name: Deploy CI
+name: Test CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - dev
+  pull_request:
+    branches: 
+      - dev
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  run_tests:
     name: Test
     runs-on: ubuntu-latest
 

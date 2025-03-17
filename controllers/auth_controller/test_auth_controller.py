@@ -25,7 +25,7 @@ def test_sign_in_success(client, db_session: Session, mock_requests_post):
         }
     }
     response = client.post("/auth/sign_in", json=valid_sign_in_payload)
-    mock_requests_post.assert_called_once()
+    assert mock_requests_post.call_count == 2
     assert response.status_code == 204
 
 
@@ -94,7 +94,9 @@ def test_sign_up_success(client, mock_requests_post):
             "data": {
                 "email": "newuser@example.com",
                 "password": "Password123!",
-                "password_confirm": "Password123!"
+                "password_confirm": "Password123!",
+                "phone_number": "123123123",
+                "full_name": "John Doe"
             }
         }
     }
@@ -113,7 +115,9 @@ def test_sign_up_mismatched_passwords(client, mock_requests_post):
             "data": {
                 "email": "newuser@example.com",
                 "password": "Password123!",
-                "password_confirm": "DifferentPassword"
+                "password_confirm": "DifferentPassword",
+                "full_name": "Full Name",
+                "phone_number": "123123123"
             }
         }
     }
@@ -136,7 +140,7 @@ def test_sign_up_missing_fields(client, mock_requests_post):
     response = client.post("/auth/sign_up", json=invalid_sign_up_payload)
     assert response.status_code == 200
     assert response.json() == {
-        'error_message': 'Missing required fields (email, password)'}
+        'error_message': 'Missing required fields'}
     mock_requests_post.assert_called()
 
 
@@ -150,7 +154,9 @@ def test_sign_up_user_exists(client, mock_requests_post):
             "data": {
                 "email": "testuser1@example.com",
                 "password": "Password123!",
-                "password_confirm": "Password123!"
+                "password_confirm": "Password123!",
+                "full_name": "Full Name",
+                "phone_number": "123123123"
             }
         }
     }
